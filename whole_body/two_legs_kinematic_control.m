@@ -88,7 +88,7 @@ function two_legs_kinematic_control(varargin)
     
     %% Initializes the serially coupled kinematic chains
     % From the left leg towards the right leg
-    left_to_right = DQ_WholeBody(left_leg, 'reversed');
+    left_to_right = DQ_SerialWholeBody(left_leg, 'reversed');
     % Determines the rigid transformation between the base frames of the
     % two legs
     base_left_to_base_right = left_leg.base_frame'*right_leg.base_frame;
@@ -98,7 +98,7 @@ function two_legs_kinematic_control(varargin)
     left_to_right.add(right_leg);
     
     % We do the same thing, but from the right leg towards the left leg
-    right_to_left = DQ_WholeBody(right_leg, 'reversed');
+    right_to_left = DQ_SerialWholeBody(right_leg, 'reversed');
     % Determines the rigid transformation between the base frames of the
     % two legs
     base_right_to_base_left = base_left_to_base_right';

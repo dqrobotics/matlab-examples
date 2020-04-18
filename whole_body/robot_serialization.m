@@ -38,7 +38,7 @@ function robot_serialization(varargin)
            Ax18ManipulatorRobot.kinematics()};
 
     %% Initializes the robot with base
-    robot = DQ_WholeBody(base);
+    robot = DQ_SerialWholeBody(base);
     % Serially add all the arms
     for i = 1:length(arm)
         robot.add(arm{i});

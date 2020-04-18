@@ -45,7 +45,7 @@ function whole_body_control_example(varargin)
            Ax18ManipulatorRobot.kinematics()};
 
     %% Initializes the robot serially coupled kinematic chain from the mobile base
-    robot = DQ_WholeBody(base);
+    robot = DQ_SerialWholeBody(base);
     % Serially add all the arms
     for i = 1:length(arm)
         robot.add(arm{i});
