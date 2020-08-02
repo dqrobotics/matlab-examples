@@ -50,7 +50,17 @@ function example_little_john(varargin)
     % In order to define a decoupled transformation we use a CMI(3)
     % multiplication, also known as decompositional multiplication
     xd = (r + E_*(1/2)*p*r) .* x;
-
+    
+    %% Initialize the controller
+    % This is not the most appropriate controller due to the nonholonomic
+    % constraint, but we just want to test it together with the Little John
+    % robot. A better controller would be a constrained one.
+    controller = DQ_PseudoinverseController(robot);
+    controller.set_control_objective(ControlObjective.Pose);
+    controller.set_gain(100);
+    controller.set_stability_threshold(0.0001);
+    controller.set_damping(0.05);
+    T = 0.001; % Integration step used in the robot configuration update
 
     %% Initalize the plot
     % Plot the global reference frame
@@ -74,26 +84,18 @@ function example_little_john(varargin)
 
     %% The simulation will run until the user presses 'q'
     x_error = 1;
-    T = 0.001; % Integration step used in the robot configuration update
-    gain = 100; % The gain determines the convergence rate
+    
     i = 1;
-    while (key ~= 'q') & (norm(x_error) > 0.01)
+    while (key ~= 'q') & ~controller.system_reached_stable_region()
 
-        my_text = sprintf(['After the error becomes less than 0.01,'...
-            ' the visualization will begin. Current error is %f'],norm(x_error));
+        my_text = sprintf(['After the error derivative becomes less than '...
+            '0.0001, the visualization will begin. Current error is %f'],...
+            norm(controller.get_last_error_signal()));
         title(my_text)
         key = get(gcf,'CurrentCharacter');
 
-        %% This is the part related to the robot motion control    
-        x = robot.fkm(q);
-        J = robot.pose_jacobian(q);
-        N = haminus8(xd)*DQ.C8*J;
-        x_error = vec8(x'*xd - 1);    
-        % Use the damped least-square inverse in simple pseudoinverse-like kinematic
-        % control. This is not the most appropriate controller for this robot, as 
-        % the nonholonomy is not taken into account explicitly, but we just want to 
-        % perform a simple simulation of Little John.
-        u = -N'/(N*N' + 0.01*eye(size(N,1)))*gain*x_error;
+        %% This is the part related to the robot motion control        
+        u = controller.compute_setpoint_control_signal(q,vec8(xd));        
         % Which ends here!
 
         % Store the current configuration to visualize it later
