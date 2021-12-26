@@ -199,7 +199,7 @@ function classic_pseudoinverse_controller_example()
         end
         
         % This is actually the important part on how to use the controller. 
-        while ~pseudoinverse_controller.is_stable()
+        while ~pseudoinverse_controller.system_reached_stable_region()  % is_stable()
             u = pseudoinverse_controller.compute_setpoint_control_signal(q, ...
                                                                 task_reference);
             % Do a numerical integration to update the robot in Matlab. In
