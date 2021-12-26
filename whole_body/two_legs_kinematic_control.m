@@ -91,7 +91,8 @@ function two_legs_kinematic_control(varargin)
     left_to_right = DQ_SerialWholeBody(left_leg, 'reversed');
     % Determines the rigid transformation between the base frames of the
     % two legs
-    base_left_to_base_right = left_leg.base_frame'*right_leg.base_frame;
+    %base_left_to_base_right = left_leg.base_frame'*right_leg.base_frame;
+    base_left_to_base_right = left_leg.get_base_frame()'*right_leg.get_base_frame();
     % Add this constant transformation to the chain
     left_to_right.add(base_left_to_base_right);    
     % Finally, add the right frame
