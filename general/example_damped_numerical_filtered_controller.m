@@ -24,8 +24,10 @@ function example_damped_numerical_filtered_controller()
     schunk_dh = [0,     0,   0,     0,   0,      0,  0;
                  0.3,   0,   0.328, 0,   0.2765, 0,  0.40049;
                  0,     0,   0,     0,   0,      0,  0;
-                -pi2,   pi2,-pi2,   pi2,-pi2,    pi2,0];
-    schunk = DQ_SerialManipulator(schunk_dh, 'standard');
+                -pi2,   pi2,-pi2,   pi2,-pi2,    pi2,0;
+                 repmat(DQ_SerialManipulatorDH.JOINT_ROTATIONAL,1,7);                                       
+                ];
+    schunk = DQ_SerialManipulatorDH(schunk_dh);
     dofs = schunk.get_dim_configuration_space();
 
     % Auxiliar variables
