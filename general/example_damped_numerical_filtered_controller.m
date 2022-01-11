@@ -27,7 +27,7 @@ function example_damped_numerical_filtered_controller()
                 -pi2,   pi2,-pi2,   pi2,-pi2,    pi2,0;       % Alpha
                  repmat(DQ_SerialManipulatorDH.JOINT_ROTATIONAL,1,7);  % Type of joint                                      
                 ];
-    schunk = DQ_SerialManipulatorDH(schunk_dh,'standard');
+    schunk = DQ_SerialManipulatorDH(schunk_dh);
     dofs = schunk.get_dim_configuration_space();
 
     % Auxiliar variables
