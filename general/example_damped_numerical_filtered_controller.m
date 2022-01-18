@@ -21,11 +21,13 @@ function example_damped_numerical_filtered_controller()
     xd = DQ([1,0,0,0,0,0,0,0.652495]);
 
     %% Robot Declaration
-    schunk_dh = [0,     0,   0,     0,   0,      0,  0;
-                 0.3,   0,   0.328, 0,   0.2765, 0,  0.40049;
-                 0,     0,   0,     0,   0,      0,  0;
-                -pi2,   pi2,-pi2,   pi2,-pi2,    pi2,0];
-    schunk = DQ_SerialManipulator(schunk_dh, 'standard');
+    schunk_dh = [0,     0,   0,     0,   0,      0,  0;  % Theta
+                 0.3,   0,   0.328, 0,   0.2765, 0,  0.40049; % d
+                 0,     0,   0,     0,   0,      0,  0;       % a
+                -pi2,   pi2,-pi2,   pi2,-pi2,    pi2,0;       % Alpha
+                 repmat(DQ_SerialManipulatorDH.JOINT_ROTATIONAL,1,7);  % Type of joint                                      
+                ];
+    schunk = DQ_SerialManipulatorDH(schunk_dh);
     dofs = schunk.get_dim_configuration_space();
 
     % Auxiliar variables
@@ -66,7 +68,6 @@ function example_damped_numerical_filtered_controller()
 
         delta_thetas = J_inv*kp*x_error;
         q = q + delta_thetas;
-        
         % visualization
         plot(schunk,q);
         drawnow;        
