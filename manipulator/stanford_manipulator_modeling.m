@@ -1,4 +1,4 @@
-% (C) Copyright 2020 DQ Robotics Developers
+% (C) Copyright 2022 DQ Robotics Developers
 %
 % This file is part of DQ Robotics.
 %
@@ -72,42 +72,6 @@ function stanford_manipulator_modeling()
 
         % Testing some methods
         TestCase = matlab.unittest.TestCase.forInteractiveUse;
-
-%       The following tests will be addressed in futures versions.
-%
-%         TestCase.assertEqual(StanfordDHRobot.get_thetas(),robot_DH_theta, "AbsTol", DQ.threshold,...
-%                 "Error in DQ_SerialManipulatorDH.get_thetas()");
-% 
-%         TestCase.assertEqual(StanfordDHRobot.get_ds(),robot_DH_d, "AbsTol", DQ.threshold,...
-%         "Error in DQ_SerialManipulatorDH.get_ds()");
-% 
-%         TestCase.assertEqual(StanfordDHRobot.get_as(),robot_DH_a, "AbsTol", DQ.threshold,...
-%         "Error in DQ_SerialManipulatorDH.get_as()");
-%         
-%         TestCase.assertEqual(StanfordDHRobot.get_alphas(),robot_DH_alpha, "AbsTol", DQ.threshold,...
-%         "Error in DQ_SerialManipulatorDH.get_alphas()");
-% 
-%         TestCase.assertEqual(StanfordDHRobot.get_types(),robot_type, "AbsTol", DQ.threshold,...
-%         "Error in DQ_SerialManipulatorDH.get_types()");
-% 
-% 
-% 
-%         TestCase.assertEqual(StanfordMDHRobot.get_thetas(),robot_MDH_theta, "AbsTol", DQ.threshold,...
-%                 "Error in DQ_SerialManipulatorMDH.get_thetas()");
-% 
-%         TestCase.assertEqual(StanfordMDHRobot.get_ds(),robot_MDH_d, "AbsTol", DQ.threshold,...
-%         "Error in DQ_SerialManipulatorMDH.get_ds()");
-% 
-%         TestCase.assertEqual(StanfordMDHRobot.get_as(),robot_MDH_a, "AbsTol", DQ.threshold,...
-%         "Error in DQ_SerialManipulatorMDH.get_as()");
-%         
-%         TestCase.assertEqual(StanfordMDHRobot.get_alphas(),robot_MDH_alpha, "AbsTol", DQ.threshold,...
-%         "Error in DQ_SerialManipulatorMDH.get_alphas()");
-% 
-%         TestCase.assertEqual(StanfordMDHRobot.get_types(),robot_type, "AbsTol", DQ.threshold,...
-%         "Error in DQ_SerialManipulatorMDH.get_types()");
-
-
 
         
         for i=1:number_of_trials        
