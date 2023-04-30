@@ -110,11 +110,13 @@ jointnames={'LBR4p_joint1','LBR4p_joint2',...
         u_log(:,j) = u;
         q_dot(:,j) = vi.get_joint_velocities(jointnames);
         j = j+1;
-
     end
-    show_joint_velocities(u_log, q_dot);
+    % Before closing the connection to CoppeliaSim, 
+    % make sure that the last command sent out had time to arrive.
+    vi.wait_for_simulation_step_to_end();
     vi.stop_simulation();
     vi.disconnect();
+    show_joint_velocities(u_log, q_dot);
 
 catch ME
     vi.stop_simulation();
