@@ -1,2 +1,2 @@
 # matlab-examples
-Examples and demos for Matlab
+Examples and demos for MATLAB
