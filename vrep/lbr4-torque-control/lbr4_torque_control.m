@@ -1,12 +1,12 @@
-%% Example of torque control and force sensor reading
+%% Example of torque actuation and reading
 % Frederico Fernandes Afonso Silva - Jul/2023
 % Last modification: Jul/2023
 
-% Example of torque control and force sensor reading using a Franka Emika
-% Panda robot.
+% Example of torque control and force sensor reading using a KUKA LBR4
+% robot.
 %
 % Usage:
-%       1) Open scene "panda_torque_control.ttt" on V-REP.
+%       1) Open scene "lbr4_torque_control.ttt" on V-REP.
 %           Available at: https://osf.io/gmhba/?view_only=e0122282979d43af93aa280cfd390df3
 %       2) Run this file.
 
@@ -32,15 +32,13 @@ vi.trigger_next_simulation_step(); % force sensor returns noise values if called
 vi.wait_for_simulation_step_to_end();
 
 % Define robot interface
-robot_vrep = FrankaEmikaPandaVrepRobot('Franka', vi);
-
-force_sensor_name = '/Franka/connection';
+robot_vrep = LBR4pVrepRobot('LBR4p', vi);
 
 %% Definition of the actuation torque
-tau = [-0.005; -70; 0; 5; -0.007; 0; 0];
+tau = [-0.005; -25; 0; -30; -0.007; 0; 0];
 
 %% General variables
-iteration = 1;
+iteration = 0;
 max_iteration = 10;
 
 %% Main control loop for the first desired pose
@@ -59,14 +57,6 @@ while(iteration <= max_iteration)
 
     formatSpec = 'Joint torque read from V-REP: %f\n';
     fprintf(formatSpec,tau_read);
-    disp(' ')
-
-    % Get force sensor readings 
-    [force_vec, torque_vec] = vi.get_force_sensor_readings(force_sensor_name);
-    wrench_sensor = DQ([force_vec torque_vec]);
-
-    formatSpec = 'Wrench read from V-REP (at sensor`s reference frame): %f\n';
-    fprintf(formatSpec,vec6(wrench_sensor));
     disp(' ')
 
     %% General messages
