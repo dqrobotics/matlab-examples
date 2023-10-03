@@ -88,6 +88,9 @@ try
         % This command performs a simulation step in CoppeliaSim. This step
         % is required when you are working in synchronous mode.
         vi.trigger_next_simulation_step();
+        
+        % Waits until the simulation step is finished.
+        vi.wait_for_simulation_step_to_end();
         %---------------------------------------------------------------%
 
         q =  vi.get_joint_positions(jointnames);
