@@ -1,3 +1,14 @@
+%% Example of geting the inertial parameters of a cuboid on CoppeliaSim
+% Frederico Fernandes Afonso Silva - Jan/2024
+% Last modification: Feb/2024
+
+% Example of geting the inertial parameters of a cuboid on CoppeliaSim.
+%
+% Usage:
+%       1) Open scene "cuboid_inertial_parameters.ttt" on V-REP.
+%           Available at: https://osf.io/jeut7
+%       2) Run this file.
+
 close all
 clear class
 clear all %#ok
