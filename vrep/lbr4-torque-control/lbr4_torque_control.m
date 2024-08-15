@@ -42,7 +42,7 @@ tau = [-0.005; -25; 0; -30; -0.007; 0; 0];
 iteration = 0;
 max_iteration = 10;
 
-%% Main control loop for the first desired pose
+%% Main loop
 while(iteration <= max_iteration)
     % Robot actuation in V-REP
     vi.set_joint_torques(joint_names, tau);
