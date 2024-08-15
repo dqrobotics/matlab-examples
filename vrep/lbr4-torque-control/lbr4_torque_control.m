@@ -1,9 +1,8 @@
 %% Example of torque actuation and reading
 % Frederico Fernandes Afonso Silva - Jul/2023
-% Last modification: Jul/2023
+% Last modification: Aug/2024
 
-% Example of torque control and force sensor reading using a KUKA LBR4
-% robot.
+% Example of torque actuation and reading using a KUKA LBR4 robot.
 %
 % Usage:
 %       1) Open scene "lbr4_torque_control.ttt" on V-REP.
@@ -28,8 +27,6 @@ disp('Communication established!')
 vi.set_synchronous(true);
 vi.start_simulation();
 disp('Simulation started!')
-vi.trigger_next_simulation_step(); % force sensor returns noise values if called before the first trigger
-vi.wait_for_simulation_step_to_end();
 
 % Define robot interface
 robot_name = 'LBR4p';
