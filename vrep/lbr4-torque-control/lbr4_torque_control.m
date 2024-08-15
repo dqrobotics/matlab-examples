@@ -1,7 +1,3 @@
-%% Example of torque actuation and reading
-% Frederico Fernandes Afonso Silva - Jul/2023
-% Last modification: Aug/2024
-
 % Example of torque actuation and reading using a KUKA LBR4 robot.
 %
 % Usage:
