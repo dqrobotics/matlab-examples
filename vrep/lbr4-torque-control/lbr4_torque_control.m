@@ -32,7 +32,11 @@ vi.trigger_next_simulation_step(); % force sensor returns noise values if called
 vi.wait_for_simulation_step_to_end();
 
 % Define robot interface
-robot_vrep = LBR4pVrepRobot('LBR4p', vi);
+robot_name = 'LBR4p';
+for i=1:7
+    current_joint_name = {robot_name,'_joint',int2str(i)};
+    joint_names{i} = strjoin(current_joint_name,''); %#ok
+end
 
 %% Definition of the actuation torque
 tau = [-0.005; -25; 0; -30; -0.007; 0; 0];
@@ -44,7 +48,7 @@ max_iteration = 10;
 %% Main control loop for the first desired pose
 while(iteration <= max_iteration)
     % Robot actuation in V-REP
-    robot_vrep.send_tau_to_vrep(tau);
+    vi.set_joint_torques(joint_names, tau);
     vi.trigger_next_simulation_step();
     vi.wait_for_simulation_step_to_end();
 
@@ -53,7 +57,7 @@ while(iteration <= max_iteration)
     disp(' ')
 
     % Read joint torques from V-REP
-    tau_read = robot_vrep.get_tau_from_vrep;
+    tau_read = vi.get_joint_torques(joint_names);
 
     formatSpec = 'Joint torque read from V-REP: %f\n';
     fprintf(formatSpec,tau_read);
