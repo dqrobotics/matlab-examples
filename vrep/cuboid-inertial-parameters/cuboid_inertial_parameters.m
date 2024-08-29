@@ -34,8 +34,9 @@ disp('Simulation started!')
 vi.trigger_next_simulation_step();
 vi.wait_for_simulation_step_to_end();
 
-%% Get the Cuboid's inertial parameters with respect to its shape form
-disp('Cuboid`s inertial parameters with respect to its shape form:')
+%% Get the Cuboid's inertial parameters with respect to its shape frame
+disp('Cuboid`s inertial parameters with respect to its shape frame:')
+disp(' ')
 
 % Get the Cuboid's handle
 handle = vi.get_handle('Cuboid');
@@ -57,22 +58,23 @@ disp('center of mass =')
 disp(center_of_mass_in_sf)
 disp(' ')
 
-%% Get the Cuboid's inertial parameters with respect to ReferenceFrame
+%% Get the Cuboid's inertial parameters with respect to the absolute reference frame
 disp('--------------------------------------------------------------')
 disp(' ')
 
-disp('Cuboid`s inertial parameters with respect to ReferenceFrame:')
+% Get the absolute reference frame's name
+ref_name = vi.ABSOLUTE_FRAME;
 
-% Get the ReferenceFrame's handle
-handle_ref = vi.get_handle('ReferenceFrame');
+formatSpec = 'Cuboid`s inertial parameters with respect to %s:\n';
+fprintf(formatSpec, ref_name);
 
 % Get the Cuboid's inertia matrix
-inertia_matrix_in_rf = vi.get_inertia_matrix(handle, handle_ref);
+inertia_matrix_in_rf = vi.get_inertia_matrix(handle, ref_name);
 disp('inertia matrix =')
 disp(inertia_matrix_in_rf)
 
 % Get the Cuboid's center of mass
-center_of_mass_in_rf = vi.get_center_of_mass(handle, handle_ref);
+center_of_mass_in_rf = vi.get_center_of_mass(handle, ref_name);
 disp('center of mass =')
 disp(center_of_mass_in_rf)
 disp(' ')
