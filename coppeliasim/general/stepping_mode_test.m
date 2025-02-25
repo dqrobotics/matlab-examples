@@ -23,6 +23,12 @@
 %
 % Contributors to this file:
 %    1. Juan Jose Quiroz Omana (juanjose.quirozomana@manchester.ac.uk)
+%
+%
+% Note:
+%
+% Open the DQ_Robotics_lab.ttt scene in CoppeliaSim before running this
+% script.
 
 clear;
 close all;
