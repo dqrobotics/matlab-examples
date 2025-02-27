@@ -43,7 +43,7 @@ try
     % Establish the connection with CoppeliaSim. If the simulation is running in the
     % same machine of this script and you are using the default port (23000), 
     % you can call connect() with no arguments.
-    cs.connect();
+    cs.connect("localhost", 23000, 5000);
 
     % Set the stepping mode. 
     % Check more in https://manual.coppeliarobotics.com/en/simulation.htm
@@ -57,7 +57,7 @@ try
     freq = 0.1;
     time_simulation_step = 0.05;
 
-    for i=0:500
+    for i=0:300
         t = i*time_simulation_step;
 
         % Define a varying-time position based on the Lemniscate of Bernoulli
@@ -108,7 +108,8 @@ try
 
 catch ME
 
-    cs.stop_simulation(); % Stop the simulation
+    %cs.stop_simulation(); % Stop the simulation
     rethrow(ME)
 
 end
+
