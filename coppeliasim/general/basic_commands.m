@@ -40,10 +40,8 @@ cs = DQ_CoppeliaSimInterfaceZMQ();
 
 
 try
-    % Establish the connection with CoppeliaSim. If the simulation is running in the
-    % same machine of this script and you are using the default port (23000), 
-    % you can call connect() with no arguments.
-    cs.connect("localhost", 23000, 5000);
+    % Establish the connection with CoppeliaSim. 
+    cs.connect();
 
     % Set the stepping mode. 
     % Check more in https://manual.coppeliarobotics.com/en/simulation.htm
