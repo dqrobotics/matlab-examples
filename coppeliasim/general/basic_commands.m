@@ -91,7 +91,7 @@ try
 
         % Set the torque of the fifth joint of the Franka Emika Panda
         torque = sin(2*pi*freq*t);
-        cs.set_joint_target_velocities({'Franka/link5_resp/joint'}, torque);
+        cs.set_joint_torques({'Franka/link5_resp/joint'}, torque);
 
         % Set the target velocities of the Pioneer wheels
         cs.set_joint_target_velocities({'PioneerP3DX/rightMotor'}, 0.1);
@@ -106,7 +106,7 @@ try
 
 catch ME
 
-    %cs.stop_simulation(); % Stop the simulation
+    cs.stop_simulation(); % Stop the simulation
     rethrow(ME)
 
 end
