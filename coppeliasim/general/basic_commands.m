@@ -89,9 +89,12 @@ try
         target_velocity = 2*pi*freq*cos(2*pi*freq*t);
         cs.set_joint_target_velocities({'Franka/joint'}, target_velocity);
 
-        % Set the torque of the fifth joint of the Franka Emika Panda
+        % Set the torque of the Dummy Robot
         torque = sin(2*pi*freq*t);
-        cs.set_joint_torques({'Franka/link5_resp/joint'}, torque);
+        cs.set_joint_torques({'Revolute_joint'}, torque);
+        torque_read = cs.get_joint_torques({'Revolute_joint'});
+        vel_read = cs.get_joint_velocities({'Revolute_joint'});
+        
 
         % Set the target velocities of the Pioneer wheels
         cs.set_joint_target_velocities({'PioneerP3DX/rightMotor'}, 0.1);
@@ -100,9 +103,17 @@ try
 
         % Trigger a simulation step in CoppeliaSim
         cs.trigger_next_simulation_step();    
+        
+
+        % Save data to compare the reference and read torques
+        torque_log(i+1) = torque;
+        torque_read_log(i+1) = torque_read;
     end
 
     cs.stop_simulation(); % Stop the simulation
+    plot(torque_log, 'b');
+    hold on
+    plot(torque_read_log, 'r')
 
 catch ME
 
