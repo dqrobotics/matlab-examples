@@ -50,7 +50,7 @@ try
     % Starts the simulation. 
     cs.start_simulation();
 
-    % Define some parameters to compute vayring-time trajectories
+    % Define some parameters to compute varying-time trajectories
     a = 1;
     freq = 0.1;
     time_simulation_step = 0.05;
