@@ -1,6 +1,11 @@
 % This example shows how to use basic commands in CoppeliaSim.
+%
+% Note:
+%
+% Open the DQ_Robotics_lab.ttt scene (https://github.com/dqrobotics/coppeliasim-scenes) 
+% in CoppeliaSim before running this script.
 % 
-% (C) Copyright 2025 DQ Robotics Developers
+% (C) Copyright 2011-2025 DQ Robotics Developers
 % 
 % This file is part of DQ Robotics.
 % 
@@ -17,16 +22,13 @@
 %     You should have received a copy of the GNU Lesser General Public License
 %     along with DQ Robotics.  If not, see <http://www.gnu.org/licenses/>.
 %
-% DQ Robotics website: dqrobotics.sourceforge.net
+% DQ Robotics website: https://dqrobotics.github.io/
 %
 % Contributors to this file:
 %    1. Juan Jose Quiroz Omana (juanjose.quirozomana@manchester.ac.uk)
-%
-%
-% Note:
-%
-% Open the DQ_Robotics_lab.ttt scene (https://github.com/dqrobotics/coppeliasim-scenes) 
-% in CoppeliaSim before running this script.
+
+
+
 
 
 clear;
