@@ -25,8 +25,8 @@
 %
 % Note:
 %
-% Open the DQ_Robotics_lab.ttt scene in CoppeliaSim before running this
-% script.
+% Open the DQ_Robotics_lab.ttt scene (https://github.com/dqrobotics/coppeliasim-scenes) 
+% in CoppeliaSim before running this script.
 
 
 clear;
@@ -91,9 +91,7 @@ try
 
         % Set the torque of the Dummy Robot
         torque = sin(2*pi*freq*t);
-        cs.set_joint_torques({'Revolute_joint'}, torque);
-        torque_read = cs.get_joint_torques({'Revolute_joint'});
-        vel_read = cs.get_joint_velocities({'Revolute_joint'});
+        cs.set_joint_target_forces({'Revolute_joint'}, torque);
         
 
         % Set the target velocities of the Pioneer wheels
@@ -103,17 +101,28 @@ try
 
         % Trigger a simulation step in CoppeliaSim
         cs.trigger_next_simulation_step();    
-        
 
-        % Save data to compare the reference and read torques
+        % Read the joint force after perform a the simulation step
+        torque_read = cs.get_joint_forces({'Revolute_joint'});
+
+        % Save data to compare the target and read forces
         torque_log(i+1) = torque;
         torque_read_log(i+1) = torque_read;
     end
 
     cs.stop_simulation(); % Stop the simulation
-    plot(torque_log, 'b');
+
+
+    h1 = figure;
+    set(h1, 'DefaultTextFontSize', 15);
+    set(h1, 'DefaultAxesFontSize', 15);
+    plot(torque_log, 'b', 'LineWidth', 2);
     hold on
-    plot(torque_read_log, 'r')
+    plot(torque_read_log, ':r', 'LineWidth', 2)
+    legend('target force', 'measured force');
+    fig = gcf;
+    fig.Color = [1 1 1];
+    box('off');
 
 catch ME
 
