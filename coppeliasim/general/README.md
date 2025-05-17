@@ -4,6 +4,7 @@
 | Example  | Description |
 | ------------- | ------------- |
 | stepping_mode_test.m  | Test the stepping (formerly known as synchronous mode) using a free fall experiment |
+| robot_jointnames  | Test the get_jointnames_from_object() method |
 | basic_commands  | Test the basic commands of the class using different objects and robots |
 
 1. Open the DQ_Robotics_lab.ttt scene in CoppeliaSim
